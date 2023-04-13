@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+{% block content %}
+<h2>This is the home page</h2>
+<h6>Below is a list of users</h6>
+    {% for user in users %}
+        {{ user }}
+    {% endfor %}
+<h6>End of user list</h6>
+{% endblock content %}
