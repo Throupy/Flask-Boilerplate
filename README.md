@@ -25,7 +25,6 @@ wtforms
 	│ forms.py
 	│ models.py
 	│ routes.py
-	│ site.db
 	│ __init__.py
 ├───static
 	│ main.css
@@ -91,8 +90,9 @@ The DB tables are defined in `models.py`, alter these and then run the below com
 
 ```python
 py -3.10
->>  from application import db
->> db.create_all()
+>> from application import db, app
+>> with app.app_context():
+>>   db.create_all()
 # Some SQLAlchemy warning will show up, ignore
 ```
 
@@ -104,7 +104,8 @@ And then to query tables:
 
 ```python
 py -3.10
->>  from application import User
->> User.query.all()
+>> from application.models import User
+>> with app.app_context():
+>>   User.query.all()
 # Rows show up here
 ```
